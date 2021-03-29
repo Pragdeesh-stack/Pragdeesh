@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Login</title>
+  <link rel="icon" href="static/Logo.png">
+</head>
+<script type="text/javascript">
+<!--hide
+var password;
+var pass1="Kumarweblogin";
+password=prompt('Enter the password to view the website, password=Kumarweblogin','');
+if (password==pass1)
+alert('Corrrect password click OK to enter the page')
+else{
+  window.location="Pragdeesh K"
+}
+//-->
+</script>
+<body style="background-color: #e1ebe4;">
+  <font><a href="/">Back</a></font>
+ <form action="/submit_form" method="POST">
+  <table>
+   <tr>
+    <td style="color: #006d6d; font-family: sans-serif;">Name :</td>
+    <td><input type="text" name="username" required></td>
+   </tr>
+   <tr>
+    <td style="color: #006d6d; font-family: sans-serif;">Password :</td>
+    <td><input type="password" name="password" required></td>
+   </tr>
+   <tr>
+    <td style="color: #006d6d; font-family: sans-serif;">Gender :</td>
+    <td>
+     <input type="radio" name="gender" value="m" required>Male
+     <input type="radio" name="gender" value="f" required>Female
+    </td>
+   </tr>
+   <tr>
+    <td style="color: #006d6d; font-family: sans-serif;">Email :</td>
+    <td><input type="email" name="email" required></td>
+   </tr> 
+   <tr>
+    <td style="color: #006d6d; font-family: sans-serif;">Phone no :</td>
+    <td>
+     <select name="phoneCode" required>
+      <option selected hidden value="">Select Code</option>
+      <option value="977">91</option>
+      <option value="978">978</option>
+      <option value="979">979</option>
+      <option value="973">973</option>
+      <option value="972">972</option>
+      <option value="974">974</option>
+     </select>
+     <input type="phone" name="phone" required>
+    </td>
+   </tr>
+   <tr>
+    <td><input type="submit" value="Submit"></td>
+   </tr>
+  </table>
+ </form>
+<font><a href="/login">&copy;login</a></font>
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+<script type="text/javascript">
+	const options = {
+		bottom: '64px', // default: '32px'
+		right: 'unset', // default: '32px'
+		left: '32px', // default: 'unset'
+		time: '0.5s', // default: '0.3s'
+		mixColor: '#fff', // default: '#fff'
+		backgroundColor: '#fff',  // default: '#fff'
+		buttonColorDark: '#100f2c',  // default: '#100f2c'
+		buttonColorLight: '#fff', // default: '#fff'
+		saveInCookies: true, // default: true,
+		label: '🌓', // default: ''
+		autoMatchOsTheme: true // default: true
+	}
+    const darkmode = new Darkmode(options);
+
+    darkmode.showWidget();
+</script>
+</body>
+</html>

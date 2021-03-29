@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html>
+<head>
+	
+	<title>Blue Mountatin</title>
+	 <!-- for font icons -->
+	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="icon" href="static/Logo.png">
+</head>
+<style>
+nav {
+  background: #222;
+  padding: 5px 20px;
+}
+ul {
+  list-style-type: none;
+}
+a {
+  color: white;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+.logo a:hover {
+  text-decoration: none;
+}
+.menu li {
+  font-size: 16px;
+  padding: 15px 5px;
+  white-space: nowrap;
+}
+.logo a,
+.toggle a {
+  font-size: 20px;
+}
+.button.secondary {
+  border-bottom: 1px #444 solid;
+}
+
+/* Mobile menu */
+.menu {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+.toggle {
+  order: 1;
+}
+.item.button {
+  order: 2;
+}
+.item {
+  width: 100%;
+  text-align: center;
+  order: 3;
+  display: none;
+}
+.item.active {
+  display: block;
+}
+
+/* Navbar Toggle */
+.toggle {
+  cursor:pointer;
+}
+.bars {
+  background: #999;
+  display: inline-block;
+  height: 2px;
+  position: relative;
+  transition: background .2s ease-out;
+  width: 18px;
+}
+.bars:before,
+.bars:after {
+  background: #999;
+  content: '';
+  display: block;
+  height: 100%;
+  position: absolute;
+  transition: all .2s ease-out;
+  width: 100%;
+}
+.bars:before {
+  top: 5px;
+}
+.bars:after {
+  top: -5px;
+}
+
+/* Tablet menu */
+@media all and (min-width: 468px) {
+  .menu {
+      justify-content: center;
+  }
+
+  .logo {
+      flex: 1;
+  }
+
+  .item.button {
+      width: auto;
+      order: 1;
+      display: block;
+  }
+  .toggle {
+      order: 2;
+  }
+  .button.secondary {
+      border: 0;
+  }
+  .button a {
+      padding: 7.5px 15px;
+      background: teal;
+      border: 1px #006d6d solid;
+      border-radius:50em;
+  }
+  .button.secondary a {
+      background: transparent;    
+  }
+  .button a:hover {
+      text-decoration: none;
+      transition:all .25s;
+  }
+  .button:not(.secondary) a:hover {
+      background: #006d6d;
+      border-color: #005959;
+  }
+  .button.secondary a:hover {
+      color: #ddd;
+  } 
+}
+
+/* Desktop menu */
+@media all and (min-width: 768px) {
+  .item {
+      display: block;
+      width: auto;
+  }
+  .toggle {
+      display: none;
+  }
+  .logo {
+      order: 0;
+  }
+  .item {
+      order: 1;
+	  font-family: sans-serif;
+  }
+  .button {
+      order: 2;
+  }
+  .menu li {
+      padding: 15px 10px;
+  }
+  .menu li.button {
+      padding-right: 0;
+  }
+}
+/*calculator*/
+
+  *, *::before, *::after {
+  box-sizing: border-box;
+  font-family: Gotham Rounded, sans-serif;
+  font-weight: normal;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  background: linear-gradient(to right, #00AAFF, #00FF6C);
+}
+
+.calculator-grid {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  min-height: 100vh;
+  grid-template-columns: repeat(4, 100px);
+  grid-template-rows: minmax(120px, auto) repeat(5, 100px);
+}
+
+.calculator-grid > button {
+  cursor: pointer;
+  font-size: 2rem;
+  border: 1px solid white;
+  outline: none;
+  background-color: rgba(255, 255, 255, .75);
+}
+
+.calculator-grid > button:hover {
+  background-color: rgba(255, 255, 255, .9);
+}
+
+.span-two {
+  grid-column: span 2;
+}
+
+.output {
+  grid-column: 1 / -1;
+  background-color: rgba(0, 0, 0, .75);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  flex-direction: column;
+  padding: 10px;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+.output .previous-operand {
+  color: rgba(255, 255, 255, .75);
+  font-size: 1.5rem;
+}
+
+.output .current-operand {
+  color: white;
+  font-size: 2.5rem;
+</style>
+ 
+<body style="margin:0">
+<!--Header section  -->
+
+<script
+src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8="
+crossorigin="anonymous"></script>
+<script>
+$(function() {
+$(".toggle").on("click", function() {
+	if ($(".item").hasClass("active")) {
+		$(".item").removeClass("active");
+	} else {
+		$(".item").addClass("active");
+	}
+});
+});
+</script>
+<script type="text/javascript">
+<!--hide
+var password;
+var pass1="Pragdeesh";
+password=prompt('Enter the password to view the website, password=Pragdeesh','');
+if (password==pass1)
+alert('Corrrect password click OK to enter the page')
+else{
+  window.location="https://www.google.com/"
+}
+//-->
+</script>
+</head>
+<body>
+<nav>
+	<ul class="menu">
+		<li class="logo" style="font-family: Arial;"><a href="#"><img src="static/Logo.png" height="50" width="50"></a></li>
+		<li class="item"><a href="#home">Home</a></li>
+		<li class="item"><a href="#about">About</a></li>
+		<li class="item"><a href="#skills">Skills</a></li>
+		<li class="item"><a href="#contact">Contact</a></li>
+		</li>
+		<li class="item button"><a href="/login">Log In</a></li>
+		<li class="toggle"><span class="bars"></span></li>
+	</ul>
+</nav>
+<!--End header section  -->
+
+
+
+<!-- Start Home -->
+<section id="home">
+<table border="0" id="home" width="100%" cellpadding="0" cellspacing="0" bgcolor="#cad9ce">
+  <tr>
+  	 <td>
+  	 	<table border="0" width="85%" cellpadding="15" cellspacing="0" align="center">
+           <tr>
+           	   <td align="center" valign="middle" height="300">
+           	   	 <h3>
+           	   	 	<marquee behavior="alternate" direction="left" scrollamount="2">
+           	   	 	<font face="arial" color="#ffffff" size="6">
+           	   	     Hello, This is Pragdeesh Kumar
+           	   	    </font>
+           	   	   </marquee>
+           	   	</h3>
+           	   	 <h1>
+           	   	 	<marquee behavior="alternate" direction="right" scrollamount="2">
+           	   	 	<font face="arial" color=" #006d6d" size="7">
+           	   	      Web Developer
+           	   	    </font>
+           	   	</marquee>
+           	   	</h1>
+           	   </td>
+           </tr>
+        </table>
+      </td>
+    </tr>
+ </table>
+ </section>
+<!-- End Home -->
+
+
+<!-- Start About -->
+<section id="about">
+<table border="0" id="about" width="100%" cellpadding="0" cellspacing="0" bgcolor="#e1ebe4">
+  <tr>
+  	 <td>
+  	 	<table border="0" width="85%" cellpadding="15" cellspacing="0" align="center">
+  	 		<!-- Heading Start-->
+			<br><br><br><br><br>
+           <tr>
+		<hr color="#000" width="20%">
+			<p align="center"><font face="sans-serif" color="#006d6d" size="5.5">About</font></p>
+		<hr color="#000" width="20%">
+           </tr>
+		   <br><br><br><br><br>
+           <!-- Heading  End-->
+           <tr>
+           	   <td width="35%">
+           	   	  <img src="static/alt.png" width="100%" alt="me" />
+           	   </td>
+           	   <td width="65%" valign="top">
+           	   	  <table border="0" width="100%" cellpadding="0" cellspacing="0" align="center">
+           	   	  	  <tr>
+           	   	  	  	 <td height="40">
+           	   	  	  	 	<font face="arial" size="4" color=" #292929">
+           	   	  	  	     Hi, I'm Kumar
+           	   	  	  	    </font>
+           	   	  	  	 </td>
+           	   	  	  </tr>
+           	   	  	  <tr>
+           	   	  	  	 <td>
+           	   	  	  	 	<font face="arial" size="5" color=" #292929">
+           	   	  	  	    Web Developer in Coimbotore
+           	   	  	  	    </font>
+           	   	  	  	</td>
+           	   	  	  </tr>
+           	   	  	  <tr>
+           	   	  	  	<td>
+           	   	  	  		<p>
+           	   	  	  			<font face="arial" size="3" color="#616662">
+           	   	  	  			This website is done in html:5, css:3, python in Flask Module and has DARK MODE Option.
+           	   	  	  		</font>
+           	   	  	  		</p>
+           	   	  	  		<p>
+           	   	  	  			<font face="arial" size="3" color="#616662">
+           	   	  	  			Hi I am Pragdeesh Kumar from TamilNadu. I am studying 7th std and I am 12 years old.
+           	   	  	  		</font>
+           	   	  	  		</p>
+           	   	  	  		<hr noshade>
+           	   	  	  		<br/>
+           	   	  	  	</td>
+           	   	  	  </tr>
+           	   	  </table>  
+           	   </td>
+           </tr>
+          <!-- section padding bottom -->
+           <tr>
+           	  <td height="60" colspan="2">
+                 
+           	  </td>
+           </tr>
+          <!-- section padding bottom End-->
+        </table>
+      </td>
+   </tr>
+</table>
+</section>
+<!-- End About -->
+
+<!-- Start Skills -->
+<section id="skills">
+<table border="0" width="100%" cellpadding="0" cellspacing="0" bgcolor="#cad9ce">
+  <tr>
+  	 <td>
+  	 	<table border="0" width="85%" cellpadding="15" cellspacing="0" align="center">
+  	 	<!-- Heading Start-->
+		<br><br><br><br><br>
+		<hr color="#000" width="20%">
+		   <p align="center"><font face="sans-serif" color="#006d6d" size="5.5">Skills</font></p>
+	   <hr color="#000" width="20%">
+	   <br><br><br><br><br>
+        <!-- Heading  End-->
+         <tr>
+         	<td width="50%" height="100" valign="top">
+         	   <table border="0" width="100%" cellpadding="0" cellspacing="0" align="center">
+         	   	<tr>
+         	   		<td align="left" valign="top" height="40">
+         	   		  <font face="arial" size="5" color="#292929">
+         	   		   Html5
+         	   		</font>
+         	   	    </td>
+         	   		<td align="right" valign="top" height="40">
+         	   			<font face="arial" size="5" color="#006d6d">
+         	   	     	80%
+         	   	       </font>
+         	   	    </td>
+         	   	</tr>
+         	   	<tr>
+         	   		<td colspan="2" bgcolor="#ffffff" align="left">
+         	   		  <table border="0" width="80%" cellpadding="0" cellspacing="0"  bgcolor="#006d6d">
+         	   		  	 <tr>
+         	   		  	 	<td height="10"></td>
+         	   		  	 </tr>
+         	   		  </table>	
+         	   		</td>
+         	   	</tr>
+         	   </table>	
+         	</td>
+         	<td width="50%" height="100" valign="top">
+         	   <table border="0" width="100%" cellpadding="0" cellspacing="0" align="center">
+         	   	<tr>
+         	   		<td align="left" valign="top" height="40">
+         	   		  <font face="arial" size="5" color="#292929">
+         	   		   Css3
+         	   		</font>
+         	   	    </td>
+         	   		<td align="right" valign="top" height="40">
+         	   			<font face="arial" size="5" color="#006d6d">
+         	   	     	40%
+         	   	       </font>
+         	   	    </td>
+         	   	</tr>
+         	   	<tr>
+         	   		<td colspan="2" bgcolor="#ffffff" align="left">
+         	   		  <table border="0" width="40%" cellpadding="0" cellspacing="0"  bgcolor="#006d6d">
+         	   		  	 <tr>
+         	   		  	 	<td height="10"></td>
+         	   		  	 </tr>
+         	   		  </table>	
+         	   		</td>
+         	   	</tr>
+         	   </table>	
+         	</td>
+         </tr>
+         <tr>
+         	<td width="50%" height="100" valign="top">
+         	   <table border="0" width="100%" cellpadding="0" cellspacing="0" align="center">
+         	   	<tr>
+         	   		<td align="left" valign="top" height="40">
+         	   		  <font face="arial" size="5" color="#292929">
+         	   		   Javascript
+         	   		</font>
+         	   	    </td>
+         	   		<td align="right" valign="top" height="40">
+         	   			<font face="arial" size="5" color=" #006d6d">
+         	   	     	67%
+         	   	       </font>
+         	   	    </td>
+         	   	</tr>
+         	   	<tr>
+         	   		<td colspan="2" bgcolor="#ffffff" align="left">
+         	   		  <table border="0" width="67%" cellpadding="0" cellspacing="0"  bgcolor="#006d6d">
+         	   		  	 <tr>
+         	   		  	 	<td height="10"></td>
+         	   		  	 </tr>
+         	   		  </table>	
+         	   		</td>
+         	   	</tr>
+         	   </table>	
+         	</td>
+         	   	</tr>
+         	   	</tr>
+         	   </table>	
+			</td>
+         <!-- section padding bottom -->
+           <tr>
+           	  <td height="10" colspan="2">
+                 
+           	  </td>
+           </tr>
+          <!-- section padding bottom End-->
+       </table>
+    </td>
+   </tr>
+</table>
+</section>
+<!-- End Skills -->
+
+
+<!-- Start Team -->
+<section id="team">
+<table border="0" id="team" width="100%" cellpadding="0" cellspacing="0" bgcolor="#e1ebe4">
+  <tr>
+  	 <td>
+  	 	<table border="0" width="85%" cellpadding="15" cellspacing="0" align="center">
+  	 	<!-- Heading Start-->
+		<br><br><br><br><br>
+	   <hr color="#000" width="20%">
+		   <p align="center"><font face="sans-serif" color="#006d6d" size="5.5">Teams</font></p>
+	   <hr color="#000" width="20%">
+	   <br><br><br><br><br>
+        <!-- Heading  End-->
+        <tr>
+          <td width="33.33%" valign="top">
+          	  <table border="0" width="100%" cellpadding="15" cellspacing="0" align="center" bgcolor="#cad9ce">
+          	  	<tr>
+          	  	   <td>
+          	  	   	 <img src="static/alt.png" width="100%" alt="team" />
+          	  	   	 <br/><br/>
+          	  	   	 <font face="arial" size="5" color="#292929">
+          	  	   	 	Pragdeesh Kumar
+          	  	   	 </font>
+          	  	   	 <br/><br/>
+          	  	   	 <font face="arial" size="4" color="#006d6d">
+          	  	   	 	Web Designer
+          	  	   	 </font>
+          	  	   </td>	
+          	  	</tr>
+          	  </table>
+         	  
+          </td>
+          
+          <td width="33.33%" valign="top">
+          	  <table border="0" width="100%" cellpadding="15" cellspacing="0" align="center" bgcolor="#cad9ce">
+          	  	<tr>
+          	  	   <td>
+          	  	   	 <br/><br/>
+          	  	   	 <font face="arial" size="5" color="#292929">
+          	  	   	 	Html:5
+          	  	   	 </font>
+          	  	   	 <br/><br/>
+          	  	   	 <font face="arial" size="4" color="#006d6d">
+          	  	   	 	Web Developer
+          	  	   	 </font>
+          	  	   </td>	
+          	  	</tr>
+          	  </table>
+         	  
+          </td>
+
+          <td width="33.33%" valign="top">
+          	  <table border="0" width="100%" cellpadding="15" cellspacing="0" align="center" bgcolor="#cad9ce">
+          	  	<tr>
+          	  	   <td>
+          	  	   	 <br/><br/>
+          	  	   	 <font face="arial" size="5" color="#292929">
+          	  	   	 	Python:Flask module
+          	  	   	 </font>
+          	  	   	 <br/><br/>
+          	  	   	 <font face="arial" size="4" color="#006d6d">
+          	  	   	 	App Developer
+          	  	   	 </font>
+
+          	  	   </td>	
+          	  	</tr>
+          	  </table>
+         	  
+          </td>
+        </tr>
+        <!-- section padding bottom -->
+           <tr>
+           	  <td height="60" colspan="3">
+                 
+           	  </td>
+           </tr>
+          <!-- section padding bottom End-->
+        </table>
+     </td>
+   </tr>
+</table>
+</section>
+<!-- End Team -->
+
+<!--Calculator -->
+<section id="calc">
+  <title>Calculator</title>
+  <table bgcolor="#cad9ce">
+    <a href="/calc">C</a>>
+  <div class="calculator-grid">
+    <div class="output">
+      <div data-previous-operand class="previous-operand"></div>
+      <div data-current-operand class="current-operand"></div>
+    </div>
+    <button data-all-clear class="span-two">AC</button>
+    <button data-delete>DEL</button>
+    <button data-operation>÷</button>
+    <button data-number>1</button>
+    <button data-number>2</button>
+    <button data-number>3</button>
+    <button data-operation>*</button>
+    <button data-number>4</button>
+    <button data-number>5</button>
+    <button data-number>6</button>
+    <button data-operation>+</button>
+    <button data-number>7</button>
+    <button data-number>8</button>
+    <button data-number>9</button>
+    <button data-operation>-</button>
+    <button data-number>.</button>
+    <button data-number>0</button>
+    <button data-equals class="span-two">=</button>
+  </div>
+<script type="text/javascript">
+  class Calculator {
+  constructor(previousOperandTextElement, currentOperandTextElement) {
+    this.previousOperandTextElement = previousOperandTextElement
+    this.currentOperandTextElement = currentOperandTextElement
+    this.clear()
+  }
+
+  clear() {
+    this.currentOperand = ''
+    this.previousOperand = ''
+    this.operation = undefined
+  }
+
+  delete() {
+    this.currentOperand = this.currentOperand.toString().slice(0, -1)
+  }
+
+  appendNumber(number) {
+    if (number === '.' && this.currentOperand.includes('.')) return
+    this.currentOperand = this.currentOperand.toString() + number.toString()
+  }
+
+  chooseOperation(operation) {
+    if (this.currentOperand === '') return
+    if (this.previousOperand !== '') {
+      this.compute()
+    }
+    this.operation = operation
+    this.previousOperand = this.currentOperand
+    this.currentOperand = ''
+  }
+
+  compute() {
+    let computation
+    const prev = parseFloat(this.previousOperand)
+    const current = parseFloat(this.currentOperand)
+    if (isNaN(prev) || isNaN(current)) return
+    switch (this.operation) {
+      case '+':
+        computation = prev + current
+        break
+      case '-':
+        computation = prev - current
+        break
+      case '*':
+        computation = prev * current
+        break
+      case '÷':
+        computation = prev / current
+        break
+      default:
+        return
+    }
+    this.currentOperand = computation
+    this.operation = undefined
+    this.previousOperand = ''
+  }
+
+  getDisplayNumber(number) {
+    const stringNumber = number.toString()
+    const integerDigits = parseFloat(stringNumber.split('.')[0])
+    const decimalDigits = stringNumber.split('.')[1]
+    let integerDisplay
+    if (isNaN(integerDigits)) {
+      integerDisplay = ''
+    } else {
+      integerDisplay = integerDigits.toLocaleString('en', { maximumFractionDigits: 0 })
+    }
+    if (decimalDigits != null) {
+      return `${integerDisplay}.${decimalDigits}`
+    } else {
+      return integerDisplay
+    }
+  }
+
+  updateDisplay() {
+    this.currentOperandTextElement.innerText =
+      this.getDisplayNumber(this.currentOperand)
+    if (this.operation != null) {
+      this.previousOperandTextElement.innerText =
+        `${this.getDisplayNumber(this.previousOperand)} ${this.operation}`
+    } else {
+      this.previousOperandTextElement.innerText = ''
+    }
+  }
+}
+
+
+const numberButtons = document.querySelectorAll('[data-number]')
+const operationButtons = document.querySelectorAll('[data-operation]')
+const equalsButton = document.querySelector('[data-equals]')
+const deleteButton = document.querySelector('[data-delete]')
+const allClearButton = document.querySelector('[data-all-clear]')
+const previousOperandTextElement = document.querySelector('[data-previous-operand]')
+const currentOperandTextElement = document.querySelector('[data-current-operand]')
+
+const calculator = new Calculator(previousOperandTextElement, currentOperandTextElement)
+
+numberButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    calculator.appendNumber(button.innerText)
+    calculator.updateDisplay()
+  })
+})
+
+operationButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    calculator.chooseOperation(button.innerText)
+    calculator.updateDisplay()
+  })
+})
+
+equalsButton.addEventListener('click', button => {
+  calculator.compute()
+  calculator.updateDisplay()
+})
+
+allClearButton.addEventListener('click', button => {
+  calculator.clear()
+  calculator.updateDisplay()
+})
+
+deleteButton.addEventListener('click', button => {
+  calculator.delete()
+  calculator.updateDisplay()
+})
+</script>
+</table>
+</section>
+<!--  End Calculator-->
+
+
+<!-- Start Contact -->
+<section id="contact">
+<table border="0" id="contact" width="100%" cellpadding="0" cellspacing="0" bgcolor="#cad9ce">
+  <tr>
+  	 <td>
+  	 	<table border="0" width="85%" cellpadding="15" cellspacing="0" align="center">
+  	 	<!-- Heading Start-->
+		<br><br><br><br><br>
+		<hr color="#000" width="20%">
+		   <p align="center"><font face="sans-serif" color="#006d6d" size="5.5">Contact</font></p>
+	   <hr color="#000" width="20%">
+	   <br><br><br><br><br>
+        <!-- Heading  End-->
+        <tr>
+        	<td align="center" valign="top">
+        	  <table border="0" width="55%" cellpadding="20" cellspacing="0" align="center" bgcolor="#e1ebe4">
+        	  	<tr>
+        	  		<td>
+        	   <table border="0" width="100%" cellpadding="15" cellspacing="0" align="center" bgcolor="#e1ebe4">
+        		 <tr>
+        		 	<td width="30%">
+        		 		<font face="arial" size="4" color="#292929">
+        		 	     Name
+        		 	    </font>
+        		 	    
+        		    </td>
+        		    <td width="70%">
+        		    	<input type="text" size="50">
+        		    </td>
+        		 </tr>
+        		 <tr>
+        		 	<td width="30%">
+        		 		<font face="arial" size="4" color="#292929">
+        		 	     Email
+        		 	    </font>
+        		 	    
+        		    </td>
+        		    <td width="70%">
+        		    	<input type="text" size="50">
+        		    </td>
+        		 </tr>
+        		 <tr>
+        		 	<td width="30%">
+        		 		<font face="arial" size="4" color="#292929">
+        		 	     Subject
+        		 	    </font>
+        		 	    
+        		    </td>
+        		    <td width="70%">
+        		    	<input type="text" size="50">
+        		    </td>
+        		 </tr>
+
+        		 <tr>
+        		 	<td width="30%">
+        		 		<font face="arial" size="4" color="#292929">
+        		 	     Message
+        		 	    </font>
+        		 	    
+        		    </td>
+        		    <td width="70%">
+        		    	<textarea cols="51" rows="4"></textarea>
+        		    </td>
+        		 </tr>
+        		 <tr>
+        		 	<td width="30%">
+        		 		&nbsp;
+        		    </td>
+        		    <td width="70%">
+        		    	
+        		    		<button type="submit">
+        		    		<font size="5" face="arial">Send Message</font>
+        		    		</button>
+        		    	
+        		    </td>
+
+        		 </tr>
+
+        	   </table>
+        	</td>
+        </tr>
+    </table>
+        	</td>
+        </tr>
+        <!-- section padding bottom -->
+           <tr>
+           	  <td height="60">
+                 
+           	  </td>
+           </tr>
+          <!-- section padding bottom End-->
+       </table>
+      </td>
+    </tr>
+</table>
+</section>
+<!-- End Contact -->
+
+
+<!-- Start Footer -->
+<table bg="#e1ebe4">
+<br><br>
+<hr color="#000" width="20%">
+<p align="center"><font face="sans-serif" color="#006d6d" size="5.5">&copy; all copyrights reserved at this <font><a href="/">web</a></font></font></p>
+<hr color="#000" width="20%">
+<br><br>
+</table>
+<!-- End Footer -->
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+<script type="text/javascript">
+	const options = {
+		bottom: '64px', // default: '32px'
+		right: 'unset', // default: '32px'
+		left: '32px', // default: 'unset'
+		time: '0.5s', // default: '0.3s'
+		mixColor: '#fff', // default: '#fff'
+		backgroundColor: '#fff',  // default: '#fff'
+		buttonColorDark: '#100f2c',  // default: '#100f2c'
+		buttonColorLight: '#fff', // default: '#fff'
+		saveInCookies: true, // default: true,
+		label: '🌓', // default: ''
+		autoMatchOsTheme: true // default: true
+	}
+    const darkmode = new Darkmode(options);
+
+    darkmode.showWidget();
+</script>
+</body>
+</html>
